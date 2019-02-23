@@ -26,6 +26,9 @@ package be.yildizgames.common.logging.logback;
 import be.yildizgames.common.logging.LoggerConfiguration;
 import be.yildizgames.common.logging.LoggerLevel;
 
+import java.util.Collections;
+import java.util.List;
+
 public class DummyLoggerConfiguration implements LoggerConfiguration {
     @Override
     public String getLoggerPattern() {
@@ -60,5 +63,10 @@ public class DummyLoggerConfiguration implements LoggerConfiguration {
     @Override
     public String getLoggerConfigurationFile() {
         return "config";
+    }
+
+    @Override
+    public List<String> getLoggerToDisable() {
+        return Collections.emptyList();
     }
 }

@@ -35,6 +35,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Grégory Van den Borre
@@ -94,6 +96,11 @@ public class LogbackLogEngineTest {
             @Override
             public String getLoggerConfigurationFile() {
                 return "not/notExist.xml";
+            }
+
+            @Override
+            public List<String> getLoggerToDisable() {
+                return Collections.emptyList();
             }
         };
     }
