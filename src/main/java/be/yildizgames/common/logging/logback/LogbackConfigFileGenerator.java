@@ -120,7 +120,9 @@ class LogbackConfigFileGenerator {
                 .append("  </root>\n");
 
         for(String disabled : configuration.getLoggerToDisable()) {
-            builder.append("  <logger name=\"" + disabled + "\" level=\"OFF\"><appender-ref ref=\"" + appender + "\" /></logger>");
+            if(!disabled.isEmpty() && !disabled.isBlank()) {
+                builder.append("  <logger name=\"" + disabled + "\" level=\"OFF\"><appender-ref ref=\"" + appender + "\" /></logger>\n");
+            }
         }
         builder.append("</configuration>\n");
         return builder.toString();
