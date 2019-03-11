@@ -37,12 +37,13 @@ public class LogbackPatternBuilderTest {
             String result = new LogbackPatternBuilder()
                     .date()
                     .context("app")
+                    .clazz()
                     .level()
                     .logger()
                     .thread()
                     .message()
                     .build();
-            Assertions.assertEquals("%d{HH:mm:ss.SSS} app %level %logger [%thread] %msg%n", result);
+            Assertions.assertEquals("%d{HH:mm:ss.SSS} app %class %level %logger [%thread] %msg%n", result);
         }
 
         @Test
@@ -50,13 +51,14 @@ public class LogbackPatternBuilderTest {
             String result = new LogbackPatternBuilder()
                     .date()
                     .context("app")
+                    .clazz()
                     .level()
                     .logger()
                     .withSeparator("|")
                     .thread()
                     .message()
                     .build();
-            Assertions.assertEquals("%d{HH:mm:ss.SSS}|app|%level|%logger|[%thread]|%msg%n", result);
+            Assertions.assertEquals("%d{HH:mm:ss.SSS}|app|%class|%level|%logger|[%thread]|%msg%n", result);
         }
 
     }
