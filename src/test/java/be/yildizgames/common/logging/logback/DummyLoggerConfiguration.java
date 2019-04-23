@@ -30,6 +30,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class DummyLoggerConfiguration implements LoggerConfiguration {
+
+    private final SupportedOutput output;
+
+    public DummyLoggerConfiguration(SupportedOutput output) {
+        this.output = output;
+    }
+
     @Override
     public String getLoggerPattern() {
         return "%n";
@@ -42,7 +49,7 @@ public class DummyLoggerConfiguration implements LoggerConfiguration {
 
     @Override
     public SupportedOutput getLoggerOutput() {
-        return SupportedOutput.FILE;
+        return this.output;
     }
 
     @Override

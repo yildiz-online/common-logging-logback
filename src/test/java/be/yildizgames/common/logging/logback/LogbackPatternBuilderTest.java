@@ -43,7 +43,7 @@ public class LogbackPatternBuilderTest {
                     .thread()
                     .message()
                     .build();
-            Assertions.assertEquals("%d{HH:mm:ss.SSS} app %class %level %logger [%thread] %msg%n", result);
+            Assertions.assertEquals("%d{dd/MM/yyyy HH:mm:ss.SSS} app %class %level %logger [%thread] %msg%n", result);
         }
 
         @Test
@@ -58,7 +58,7 @@ public class LogbackPatternBuilderTest {
                     .thread()
                     .message()
                     .build();
-            Assertions.assertEquals("%d{HH:mm:ss.SSS}|app|%class|%level|%logger|[%thread]|%msg%n", result);
+            Assertions.assertEquals("%d{dd/MM/yyyy HH:mm:ss.SSS}|app|%class|%level|%logger|[%thread]|%msg%n", result);
         }
 
     }

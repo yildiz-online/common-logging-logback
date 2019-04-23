@@ -26,6 +26,8 @@
 
 package be.yildizgames.common.logging.logback;
 
+import be.yildizgames.common.logging.LoggerConfiguration;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -38,10 +40,44 @@ public class LogbackConfigFileGeneratorTest {
     public class Generate {
 
         @Test
-        public void happyFlow() {
+        public void file() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
-            String result = generator.generate(new DummyLoggerConfiguration());
-            System.out.println(result);
+            String result = generator.generate(new DummyLoggerConfiguration(LoggerConfiguration.SupportedOutput.FILE));
+            Assertions.assertEquals(result,
+                    "<configuration>\n"
+                            + "  <timestamp key=\"byDay\" datePattern=\"yyyy-MM-dd\"/>\n"
+                            + "  <appender name=\"FILE\" class=\"ch.qos.logback.core.FileAppender\">\n"
+                            + "    <file>/output-${byDay}.txt </file>\n"
+                            + "    <append>true</append>\n"
+                            + "    <encoder>\n"
+                            + "    <pattern>%n</pattern>\n"
+                            + "    </encoder>\n"
+                            + "  </appender>\n"
+                            + "  <root level=\"DEBUG\">\n"
+                            + "    <appender-ref ref=\"FILE\" />\n"
+                            + "  </root>\n"
+                            + "</configuration>\n"
+                    );
+        }
+
+        @Test
+        public void tcp() {
+            LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
+            String result = generator.generate(new DummyLoggerConfiguration(LoggerConfiguration.SupportedOutput.TCP));
+            Assertions.assertEquals(result,
+                    "<configuration>\n"
+                            + "  <appender name=\"TCP\" class=\"com.splunk.logging.TcpAppender\">\n"
+                            + "    <RemoteHost>localhost</RemoteHost>\n"
+                            + "    <Port>25</Port>\n"
+                            + "    <layout class=\"ch.qos.logback.classic.PatternLayout\">\n"
+                            + "    <pattern>%n</pattern>\n"
+                            + "    </layout>\n"
+                            + "  </appender>\n"
+                            + "  <root level=\"DEBUG\">\n"
+                            + "    <appender-ref ref=\"TCP\" />\n"
+                            + "  </root>\n"
+                            + "</configuration>\n"
+            );
         }
 
     }

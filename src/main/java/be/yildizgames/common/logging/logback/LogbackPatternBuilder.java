@@ -92,7 +92,7 @@ class LogbackPatternBuilder implements PatternBuilder {
 
     @Override
     public final PatternBuilder date() {
-        this.builder.append("%d{HH:mm:ss.SSS}" + TEMP_SEPARATOR);
+        this.builder.append("%d{dd/MM/yyyy HH:mm:ss.SSS}" + TEMP_SEPARATOR);
         return this;
     }
 
