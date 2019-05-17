@@ -38,5 +38,4 @@ public interface LoggerLevelMapper <T> {
      * @return The matching implementation level.
      */
     T map(LoggerLevel level);
-
 }
