@@ -29,7 +29,6 @@ package be.yildizgames.common.logging.logback;
 import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.logging.LoggerConfiguration;
 import be.yildizgames.common.logging.LoggerLevel;
-import be.yildizgames.common.logging.logback.LogbackLogEngine;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

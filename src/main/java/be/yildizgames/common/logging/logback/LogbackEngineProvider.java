@@ -5,6 +5,7 @@ import be.yildizgames.common.logging.LogEngineProvider;
 
 /**
  * Provide the log engine.
+ *
  * @author Grégory Van den Borre
  */
 public class LogbackEngineProvider implements LogEngineProvider {

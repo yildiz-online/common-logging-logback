@@ -27,6 +27,7 @@ import be.yildizgames.common.logging.PatternBuilder;
 
 /**
  * Logback implementation for the pattern builder.
+ *
  * @author Grégory Van den Borre
  */
 class LogbackPatternBuilder implements PatternBuilder {

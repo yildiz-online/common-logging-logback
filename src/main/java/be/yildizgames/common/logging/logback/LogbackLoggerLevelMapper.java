@@ -29,6 +29,7 @@ import ch.qos.logback.classic.Level;
 
 /**
  * Mapper to logback levels.
+ *
  * @author Grégory Van den Borre
  */
 public class LogbackLoggerLevelMapper implements LoggerLevelMapper<Level> {

@@ -60,6 +60,5 @@ public class LogbackPatternBuilderTest {
                     .build();
             Assertions.assertEquals("%d{dd/MM/yyyy HH:mm:ss.SSS}|app|%class|%level|%logger|[%thread]|%msg%n", result);
         }
-
     }
 }

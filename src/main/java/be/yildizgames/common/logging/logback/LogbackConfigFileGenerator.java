@@ -27,6 +27,7 @@ import be.yildizgames.common.logging.LoggerConfiguration;
 
 /**
  * Generate a logback configuration file.
+ *
  * @author Grégory Van den Borre
  */
 class LogbackConfigFileGenerator {
@@ -88,6 +89,7 @@ class LogbackConfigFileGenerator {
 
     /**
      * Generate the content from the configuration.
+     *
      * @param configuration Configuration to use.
      * @return The generated content.
      */
@@ -98,17 +100,17 @@ class LogbackConfigFileGenerator {
         String appender;
         switch (configuration.getLoggerOutput()) {
             case TCP:
-                this.generateTcp(builder,configuration);
+                this.generateTcp(builder, configuration);
                 appender = TCP;
                 break;
             case FILE:
                 this.generateFile(builder, configuration);
                 appender = FILE;
-            break;
+                break;
             default:
                 this.generateConsole(builder, configuration);
                 appender = CONSOLE;
-            break;
+                break;
         }
         builder
                 .append("  <root level=\"")
@@ -119,8 +121,8 @@ class LogbackConfigFileGenerator {
                 .append("\" />\n")
                 .append("  </root>\n");
 
-        for(String disabled : configuration.getLoggerToDisable()) {
-            if(!disabled.isEmpty() && !disabled.isBlank()) {
+        for (String disabled : configuration.getLoggerToDisable()) {
+            if (!disabled.isEmpty() && !disabled.isBlank()) {
                 builder.append("  <logger name=\"" + disabled + "\" level=\"OFF\"><appender-ref ref=\"" + appender + "\" /></logger>\n");
             }
         }
@@ -130,7 +132,8 @@ class LogbackConfigFileGenerator {
 
     /**
      * Generate content for the console output.
-     * @param builder stringBuilder.
+     *
+     * @param builder       stringBuilder.
      * @param configuration configuration to use.
      */
     private void generateConsole(StringBuilder builder, LoggerConfiguration configuration) {
@@ -148,7 +151,8 @@ class LogbackConfigFileGenerator {
 
     /**
      * Generate content for the file output.
-     * @param builder stringBuilder.
+     *
+     * @param builder       stringBuilder.
      * @param configuration configuration to use.
      */
     private void generateFile(StringBuilder builder, LoggerConfiguration configuration) {
@@ -171,7 +175,8 @@ class LogbackConfigFileGenerator {
 
     /**
      * Generate content for the tcp output.
-     * @param builder stringBuilder.
+     *
+     * @param builder       stringBuilder.
      * @param configuration configuration to use.
      */
     private void generateTcp(StringBuilder builder, LoggerConfiguration configuration) {

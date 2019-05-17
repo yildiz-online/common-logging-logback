@@ -37,6 +37,7 @@ import java.nio.file.Paths;
 
 /**
  * Logback implementation for the LogEngine.
+ *
  * @author Grégory Van den Borre
  */
 public class LogbackLogEngine implements LogEngine {

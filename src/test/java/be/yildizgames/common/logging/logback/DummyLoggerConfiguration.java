@@ -29,6 +29,9 @@ import be.yildizgames.common.logging.LoggerLevel;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class DummyLoggerConfiguration implements LoggerConfiguration {
 
     private final SupportedOutput output;
