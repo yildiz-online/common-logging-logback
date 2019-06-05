@@ -23,7 +23,6 @@
  */
 package be.yildizgames.common.logging.logback;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.logging.LogEngine;
 import be.yildizgames.common.logging.LoggerConfiguration;
 import be.yildizgames.common.logging.PatternBuilder;
@@ -34,6 +33,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 /**
  * Logback implementation for the LogEngine.
@@ -66,14 +66,14 @@ public class LogbackLogEngine implements LogEngine {
 
     @Override
     public final void setConfigurationPath(final String path) {
-        ImplementationException.throwForNull(path);
+        Objects.requireNonNull(path);
         System.setProperty("logback.configurationFile", path);
         System.setProperty("logging.config", path);
     }
 
     @Override
     public final void configureFromProperties(final LoggerConfiguration properties) throws IOException {
-        ImplementationException.throwForNull(properties);
+        Objects.requireNonNull(properties);
         String result = this.generator.generate(properties);
         Path path = Paths.get(properties.getLoggerConfigurationFile());
         Files.createDirectories(path.getParent());

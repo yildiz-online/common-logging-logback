@@ -23,7 +23,6 @@
  */
 package be.yildizgames.common.logging.logback;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.logging.LoggerLevel;
 import ch.qos.logback.classic.Level;
 
@@ -36,14 +35,11 @@ public class LogbackLoggerLevelMapper implements LoggerLevelMapper<Level> {
 
     @Override
     public Level map(LoggerLevel level) {
-        ImplementationException.throwForNull(level);
         switch (level) {
             case TRACE:
                 return Level.TRACE;
             case DEBUG:
                 return Level.DEBUG;
-            case INFO:
-                return Level.INFO;
             case WARN:
                 return Level.WARN;
             case ERROR:

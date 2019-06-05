@@ -26,7 +26,6 @@
 
 package be.yildizgames.common.logging.logback;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.logging.LoggerConfiguration;
 import be.yildizgames.common.logging.LoggerLevel;
 import org.junit.jupiter.api.Assertions;
@@ -50,7 +49,7 @@ public class LogbackLogEngineTest {
         @Test
         public void nullParam() {
             LogbackLogEngine engine = new LogbackLogEngine();
-            Assertions.assertThrows(ImplementationException.class, () -> engine.configureFromProperties(null));
+            Assertions.assertThrows(NullPointerException.class, () -> engine.configureFromProperties(null));
         }
 
         @Test

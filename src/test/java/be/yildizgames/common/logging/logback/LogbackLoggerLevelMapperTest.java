@@ -26,7 +26,6 @@
 
 package be.yildizgames.common.logging.logback;
 
-import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.logging.LoggerLevel;
 import ch.qos.logback.classic.Level;
 import org.junit.jupiter.api.Assertions;
@@ -72,7 +71,7 @@ public class LogbackLoggerLevelMapperTest {
         @Test
         public void nullValue() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
-            Assertions.assertThrows(ImplementationException.class, () -> mapper.map(null));
+            Assertions.assertThrows(NullPointerException.class, () -> mapper.map(null));
         }
 
     }
