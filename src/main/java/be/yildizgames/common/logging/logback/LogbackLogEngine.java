@@ -76,7 +76,9 @@ public class LogbackLogEngine implements LogEngine {
         Objects.requireNonNull(properties);
         String result = this.generator.generate(properties);
         Path path = Paths.get(properties.getLoggerConfigurationFile());
-        Files.createDirectories(path.getParent());
+        if(path.getParent() != null) {
+            Files.createDirectories(path.getParent());
+        }
         Files.write(path, result.getBytes(StandardCharsets.UTF_8));
         this.setConfigurationPath(properties.getLoggerConfigurationFile());
     }
