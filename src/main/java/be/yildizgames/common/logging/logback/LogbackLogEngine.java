@@ -26,7 +26,6 @@ package be.yildizgames.common.logging.logback;
 import be.yildizgames.common.logging.LogEngine;
 import be.yildizgames.common.logging.LoggerConfiguration;
 import be.yildizgames.common.logging.PatternBuilder;
-import be.yildizgames.common.logging.PreLogger;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -41,11 +40,6 @@ import java.util.Objects;
  * @author Grégory Van den Borre
  */
 public class LogbackLogEngine implements LogEngine {
-
-    /**
-     * Prelogger to use before logger is initialized.
-     */
-    private final PreLogger preLogger = new PreLogger();
 
     /**
      * Generator to build a configuration file.
@@ -81,11 +75,6 @@ public class LogbackLogEngine implements LogEngine {
         }
         Files.write(path, result.getBytes(StandardCharsets.UTF_8));
         this.setConfigurationPath(properties.getLoggerConfigurationFile());
-    }
-
-    @Override
-    public final PreLogger getPrelogger() {
-        return this.preLogger;
     }
 
     /**
