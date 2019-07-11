@@ -61,8 +61,8 @@ public class LogbackLogEngine implements LogEngine {
     @Override
     public final void setConfigurationPath(final String path) {
         Objects.requireNonNull(path);
-        System.setProperty("logback.configurationFile", path);
-        System.setProperty("logging.config", path);
+        System.setProperty("logging.config", Paths.get(path).toAbsolutePath().toString());
+        System.setProperty("logback.configurationFile", Paths.get(path).toAbsolutePath().toString());
     }
 
     @Override
