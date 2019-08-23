@@ -31,5 +31,7 @@ module be.yildizgames.common.logging.logback {
     requires logback.classic;
     requires logback.core;
 
+    provides be.yildizgames.common.logging.LogEngineProvider with be.yildizgames.common.logging.logback.LogbackEngineProvider;
+
     exports be.yildizgames.common.logging.logback;
 }
