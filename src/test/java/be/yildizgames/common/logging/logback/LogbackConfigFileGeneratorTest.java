@@ -31,6 +31,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 /**
  * @author Grégory Van den Borre
  */
@@ -40,10 +42,29 @@ public class LogbackConfigFileGeneratorTest {
     public class Generate {
 
         @Test
+        public void console() {
+            LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
+            String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.CONSOLE)));
+            Assertions.assertEquals(
+                    "<configuration>\n"
+                            + "  <appender name=\"CONSOLE\" class=\"ch.qos.logback.core.ConsoleAppender\">\n"
+                            + "    <encoder>\n"
+                            + "    <pattern>%n</pattern>\n"
+                            + "    </encoder>\n"
+                            + "  </appender>\n"
+                            + "  <root level=\"DEBUG\">\n"
+                            + "    <appender-ref ref=\"CONSOLE\" />\n"
+                            + "  </root>\n"
+                            + "</configuration>\n",
+                    result
+            );
+        }
+
+        @Test
         public void file() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
-            String result = generator.generate(new DummyLoggerConfiguration(LoggerConfiguration.SupportedOutput.FILE));
-            Assertions.assertEquals(result,
+            String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.FILE)));
+            Assertions.assertEquals(
                     "<configuration>\n"
                             + "  <timestamp key=\"byDay\" datePattern=\"yyyy-MM-dd\"/>\n"
                             + "  <appender name=\"FILE\" class=\"ch.qos.logback.core.FileAppender\">\n"
@@ -56,15 +77,44 @@ public class LogbackConfigFileGeneratorTest {
                             + "  <root level=\"DEBUG\">\n"
                             + "    <appender-ref ref=\"FILE\" />\n"
                             + "  </root>\n"
-                            + "</configuration>\n"
+                            + "</configuration>\n",
+                    result
                     );
+        }
+
+        @Test
+        public void consoleAndFile() {
+            LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
+            String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.CONSOLE, LoggerConfiguration.SupportedOutput.FILE)));
+            Assertions.assertEquals(
+                    "<configuration>\n"
+                            + "  <appender name=\"CONSOLE\" class=\"ch.qos.logback.core.ConsoleAppender\">\n"
+                            + "    <encoder>\n"
+                            + "    <pattern>%n</pattern>\n"
+                            + "    </encoder>\n"
+                            + "  </appender>\n"
+                            + "  <timestamp key=\"byDay\" datePattern=\"yyyy-MM-dd\"/>\n"
+                            + "  <appender name=\"FILE\" class=\"ch.qos.logback.core.FileAppender\">\n"
+                            + "    <file>/output-${byDay}.txt </file>\n"
+                            + "    <append>true</append>\n"
+                            + "    <encoder>\n"
+                            + "    <pattern>%n</pattern>\n"
+                            + "    </encoder>\n"
+                            + "  </appender>\n"
+                            + "  <root level=\"DEBUG\">\n"
+                            + "    <appender-ref ref=\"CONSOLE\" />\n"
+                            + "    <appender-ref ref=\"FILE\" />\n"
+                            + "  </root>\n"
+                            + "</configuration>\n",
+                    result
+            );
         }
 
         @Test
         public void tcp() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
-            String result = generator.generate(new DummyLoggerConfiguration(LoggerConfiguration.SupportedOutput.TCP));
-            Assertions.assertEquals(result,
+            String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.TCP)));
+            Assertions.assertEquals(
                     "<configuration>\n"
                             + "  <appender name=\"TCP\" class=\"com.splunk.logging.TcpAppender\">\n"
                             + "    <RemoteHost>localhost</RemoteHost>\n"
@@ -76,7 +126,8 @@ public class LogbackConfigFileGeneratorTest {
                             + "  <root level=\"DEBUG\">\n"
                             + "    <appender-ref ref=\"TCP\" />\n"
                             + "  </root>\n"
-                            + "</configuration>\n"
+                            + "</configuration>\n",
+                    result
             );
         }
     }

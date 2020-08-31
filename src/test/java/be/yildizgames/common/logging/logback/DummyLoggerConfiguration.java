@@ -34,9 +34,9 @@ import java.util.List;
  */
 public class DummyLoggerConfiguration implements LoggerConfiguration {
 
-    private final SupportedOutput output;
+    private final List<SupportedOutput> output;
 
-    public DummyLoggerConfiguration(SupportedOutput output) {
+    public DummyLoggerConfiguration(List<SupportedOutput> output) {
         this.output = output;
     }
 
@@ -52,6 +52,11 @@ public class DummyLoggerConfiguration implements LoggerConfiguration {
 
     @Override
     public SupportedOutput getLoggerOutput() {
+        return this.output.get(0);
+    }
+
+    @Override
+    public List<SupportedOutput> getLoggerOutputs() {
         return this.output;
     }
 

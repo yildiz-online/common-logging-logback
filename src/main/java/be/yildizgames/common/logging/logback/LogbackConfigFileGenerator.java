@@ -25,6 +25,9 @@ package be.yildizgames.common.logging.logback;
 
 import be.yildizgames.common.logging.LoggerConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Generate a logback configuration file.
  *
@@ -97,36 +100,42 @@ class LogbackConfigFileGenerator {
         LogbackLoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
         StringBuilder builder = new StringBuilder();
         builder.append("<configuration>\n");
-        String appender;
-        switch (configuration.getLoggerOutput()) {
-            case TCP:
-                this.generateTcp(builder, configuration);
-                appender = TCP;
-                break;
-            case FILE:
-                this.generateFile(builder, configuration);
-                appender = FILE;
-                break;
-            default:
-                this.generateConsole(builder, configuration);
-                appender = CONSOLE;
-                break;
+        List<String> appender = new ArrayList<>();
+        for(LoggerConfiguration.SupportedOutput out : configuration.getLoggerOutputs()) {
+            switch (out) {
+                case TCP:
+                    this.generateTcp(builder, configuration);
+                    appender.add(TCP);
+                    break;
+                case FILE:
+                    this.generateFile(builder, configuration);
+                    appender.add(FILE);
+                    break;
+                default:
+                    this.generateConsole(builder, configuration);
+                    appender.add(CONSOLE);
+                    break;
+            }
         }
         builder
                 .append("  <root level=\"")
                 .append(mapper.map(configuration.getLoggerLevel()).toString())
-                .append("\">\n")
-                .append("    <appender-ref ref=\"")
-                .append(appender)
-                .append("\" />\n")
-                .append("  </root>\n");
+                .append("\">\n");
+
+        appender.forEach(a -> {
+            builder
+                    .append("    <appender-ref ref=\"")
+                    .append(a)
+                    .append("\" />\n");
+        });
+        builder.append("  </root>\n");
 
         for (String disabled : configuration.getLoggerToDisable()) {
             if (!disabled.isEmpty() && !disabled.isBlank()) {
                 builder.append("  <logger name=\"")
                         .append(disabled)
                         .append("\" level=\"OFF\"><appender-ref ref=\"")
-                        .append(appender)
+                        .append(appender.get(0))
                         .append("\" /></logger>\n");
             }
         }
