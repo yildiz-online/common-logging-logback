@@ -25,7 +25,7 @@
 /**
  * @author Grégory Van den Borre
  */
-module be.yildizgames.common.logging.logback {
+open module be.yildizgames.common.logging.logback {
 
     requires be.yildizgames.common.logging;
     requires logback.classic;
