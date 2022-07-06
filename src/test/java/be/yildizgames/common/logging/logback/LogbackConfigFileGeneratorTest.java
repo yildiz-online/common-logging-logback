@@ -36,13 +36,13 @@ import java.util.List;
 /**
  * @author Grégory Van den Borre
  */
-public class LogbackConfigFileGeneratorTest {
+class LogbackConfigFileGeneratorTest {
 
     @Nested
-    public class Generate {
+    class Generate {
 
         @Test
-        public void console() {
+        void console() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
             String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.CONSOLE)));
             Assertions.assertEquals(
@@ -61,7 +61,7 @@ public class LogbackConfigFileGeneratorTest {
         }
 
         @Test
-        public void file() {
+        void file() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
             String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.FILE)));
             Assertions.assertEquals(
@@ -83,7 +83,7 @@ public class LogbackConfigFileGeneratorTest {
         }
 
         @Test
-        public void consoleAndFile() {
+        void consoleAndFile() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
             String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.CONSOLE, LoggerConfiguration.SupportedOutput.FILE)));
             Assertions.assertEquals(
@@ -111,7 +111,7 @@ public class LogbackConfigFileGeneratorTest {
         }
 
         @Test
-        public void tcp() {
+        void tcp() {
             LogbackConfigFileGenerator generator = new be.yildizgames.common.logging.logback.LogbackConfigFileGenerator();
             String result = generator.generate(new DummyLoggerConfiguration(List.of(LoggerConfiguration.SupportedOutput.TCP)));
             Assertions.assertEquals(

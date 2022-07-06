@@ -33,43 +33,43 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 
-public class LogbackLoggerLevelMapperTest {
+class LogbackLoggerLevelMapperTest {
 
     @Nested
-    public class Map {
+    class Map {
 
         @Test
-        public void trace() {
+        void trace() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
             Assertions.assertEquals(Level.TRACE, mapper.map(LoggerLevel.TRACE));
         }
 
         @Test
-        public void debug() {
+        void debug() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
             Assertions.assertEquals(Level.DEBUG, mapper.map(LoggerLevel.DEBUG));
         }
 
         @Test
-        public void info() {
+        void info() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
             Assertions.assertEquals(Level.INFO, mapper.map(LoggerLevel.INFO));
         }
 
         @Test
-        public void warn() {
+        void warn() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
             Assertions.assertEquals(Level.WARN, mapper.map(LoggerLevel.WARN));
         }
 
         @Test
-        public void error() {
+        void error() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
             Assertions.assertEquals(Level.ERROR, mapper.map(LoggerLevel.ERROR));
         }
 
         @Test
-        public void nullValue() {
+        void nullValue() {
             LoggerLevelMapper mapper = new LogbackLoggerLevelMapper();
             Assertions.assertThrows(NullPointerException.class, () -> mapper.map(null));
         }

@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * @author Grégory Van den Borre
  */
-public class DummyLoggerConfiguration implements LoggerConfiguration {
+class DummyLoggerConfiguration implements LoggerConfiguration {
 
     private final List<SupportedOutput> output;
 

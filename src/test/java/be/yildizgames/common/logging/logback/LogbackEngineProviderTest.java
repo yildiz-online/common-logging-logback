@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 /**
  * @author Grégory Van den Borre
  */
-public class LogbackEngineProviderTest {
+class LogbackEngineProviderTest {
 
     @Test
-    public void happyFlow() {
+    void happyFlow() {
         LogbackEngineProvider provider = new LogbackEngineProvider();
         Assertions.assertNotNull(provider.getLogEngine());
     }

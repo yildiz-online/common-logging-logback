@@ -27,13 +27,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class LogbackPatternBuilderTest {
+class LogbackPatternBuilderTest {
 
     @Nested
-    public class Build {
+    class Build {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             String result = new LogbackPatternBuilder()
                     .date()
                     .context("app")
@@ -47,7 +47,7 @@ public class LogbackPatternBuilderTest {
         }
 
         @Test
-        public void withSeparator() {
+        void withSeparator() {
             String result = new LogbackPatternBuilder()
                     .date()
                     .context("app")
