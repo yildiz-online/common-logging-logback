@@ -28,8 +28,8 @@
 open module be.yildizgames.common.logging.logback {
 
     requires be.yildizgames.common.logging;
-    requires logback.classic;
-    requires logback.core;
+    requires ch.qos.logback.classic;
+    requires ch.qos.logback.core;
 
     provides be.yildizgames.common.logging.LogEngineProvider with be.yildizgames.common.logging.logback.LogbackEngineProvider;
 
