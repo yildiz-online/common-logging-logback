@@ -105,6 +105,6 @@ class LogbackPatternBuilder implements PatternBuilder {
 
     @Override
     public final String build() {
-        return this.builder.substring(0, this.builder.length() - TEMP_SEPARATOR.length()).replaceAll(TEMP_SEPARATOR, this.separator) + "%n";
+        return this.builder.substring(0, this.builder.length() - TEMP_SEPARATOR.length()).replace(TEMP_SEPARATOR, this.separator) + "%n";
     }
 }
