@@ -51,11 +51,6 @@ class DummyLoggerConfiguration implements LoggerConfiguration {
     }
 
     @Override
-    public SupportedOutput getLoggerOutput() {
-        return this.output.get(0);
-    }
-
-    @Override
     public List<SupportedOutput> getLoggerOutputs() {
         return this.output;
     }

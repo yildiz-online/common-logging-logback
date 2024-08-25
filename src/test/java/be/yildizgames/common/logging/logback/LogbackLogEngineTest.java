@@ -72,8 +72,8 @@ class LogbackLogEngineTest {
             }
 
             @Override
-            public SupportedOutput getLoggerOutput() {
-                return output;
+            public List<SupportedOutput> getLoggerOutputs() {
+                return List.of(output);
             }
 
             @Override
