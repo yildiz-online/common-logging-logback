@@ -26,6 +26,10 @@ package be.yildizgames.common.logging.logback;
 import be.yildizgames.common.logging.LogEngine;
 import be.yildizgames.common.logging.LoggerConfiguration;
 import be.yildizgames.common.logging.PatternBuilder;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.joran.spi.JoranException;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -61,6 +65,15 @@ public class LogbackLogEngine implements LogEngine {
     @Override
     public final void setConfigurationPath(final String path) {
         Objects.requireNonNull(path);
+        var context = (LoggerContext) LoggerFactory.getILoggerFactory();
+        context.reset();
+        var configurator = new JoranConfigurator();
+        configurator.setContext(context);
+        try {
+            configurator.doConfigure(path);
+        } catch (JoranException e) {
+            System.getLogger(this.getClass().getName()).log(System.Logger.Level.ERROR, "", e);
+        }
         System.setProperty("logging.config", Paths.get(path).toAbsolutePath().toString());
         System.setProperty("logback.configurationFile", Paths.get(path).toAbsolutePath().toString());
     }

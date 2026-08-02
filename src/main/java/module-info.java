@@ -30,6 +30,7 @@ open module be.yildizgames.common.logging.logback {
     requires be.yildizgames.common.logging;
     requires ch.qos.logback.classic;
     requires ch.qos.logback.core;
+    requires org.slf4j;
 
     provides be.yildizgames.common.logging.LogEngineProvider with be.yildizgames.common.logging.logback.LogbackEngineProvider;
 
